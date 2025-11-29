@@ -20,7 +20,7 @@ session_start();
     <ul>
         <li><a href="comments/comments.php">Stored XSS</a></li>
         <li><a href="upload/upload.php">File Upload</a></li>
-        <li><a href="admin/admin.php">CSRF Vulnerable Admin</a></li>
+        <li><a href="csrf/change_email.php">CSRF Vulnerable</a></li>
     </ul>
 
 <?php else: ?>
