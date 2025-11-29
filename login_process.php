@@ -5,7 +5,7 @@ include "includes/db.php";
 $username = $_POST['username'];
 $password = $_POST['password'];
 
-// ⚠️ SQL Injection Vulnerability on purpose
+// SQL Injection Vulnerability on purpose
 $sql = "SELECT * FROM users WHERE username='$username' AND password='$password'";
 
 $result = mysqli_query($conn, $sql);
