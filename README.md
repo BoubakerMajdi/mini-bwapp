@@ -1,2 +1,2 @@
 # mini-bwapp
-a simple php project for script kiddy to try some hacking ;)
+a simple php project for script kiddieto try some hacking ;)
