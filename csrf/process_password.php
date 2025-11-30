@@ -12,7 +12,8 @@ $new_password = $_POST['new_password'];
 $query = "UPDATE users SET password='$new_password' WHERE username='" . $_SESSION['username'] . "'";
 
 if (mysqli_query($conn, $query)) {
-    echo "Password successfully changed to: " . htmlspecialchars($new_password);
+    header("Location: change_password.php?success=1");
+    exit;
 } else {
     echo "Error updating password.";
 }

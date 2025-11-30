@@ -9,11 +9,11 @@ if (!isset($_SESSION['username'])) {
 
 $new_email = $_POST['new_email'];
 
-// VERY VULNERABLE QUERY (no validation)
 $query = "UPDATE users SET email='$new_email' WHERE username='" . $_SESSION['username'] . "'";
 
 if (mysqli_query($conn, $query)) {
-    echo "Email successfully changed to: " . htmlspecialchars($new_email);
+    header("Location: change_email.php?success=1");
+    exit;
 } else {
     echo "Error updating email.";
 }
