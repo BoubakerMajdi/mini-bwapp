@@ -33,17 +33,30 @@ $result = mysqli_query($conn, $sql);
 <h3>Comments:</h3>
 
 <?php
-// Display all comments (VULNERABLE: no sanitization)
-while ($row = mysqli_fetch_assoc($result)):
-?>
-    <div style="border:1px solid #ccc; padding:10px; margin:10px 0;">
-        <strong><?php echo $row['username']; ?></strong> said:<br><br>
-        <?php echo $row['comment']; ?>   <!-- XSS vulnerability -->
-        <br><small><?php echo $row['date_added']; ?></small>
-    </div>
-<?php endwhile; ?>
+$security = $_SESSION['security'];
 
-<a href="../index.php">Back to Home</a>
+while ($row = mysqli_fetch_assoc($result)) {
+
+    $comment = $row['comment'];
+
+    switch ($security) {
+
+        case 0: // LOW: raw output
+            echo "<p><b>{$row['username']}:</b> $comment</p>";
+            break;
+
+        case 1: // MEDIUM: strip script on display too
+            $safe_comment = preg_replace('/<script\b[^>]*>(.*?)<\/script>/is', '', $comment);
+            echo "<p><b>{$row['username']}:</b> $safe_comment</p>";
+            break;
+
+        case 2: // HIGH: full escaping
+            $safe_comment = htmlspecialchars($comment, ENT_QUOTES, 'UTF-8');
+            echo "<p><b>{$row['username']}:</b> $safe_comment</p>";
+            break;
+    }
+}
+?>
 
 <?php endif; ?>
 

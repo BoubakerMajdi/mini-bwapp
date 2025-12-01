@@ -18,12 +18,14 @@ session_start();
 
     <h3>Vulnerabilities</h3>
     <ul>
+        <li><a href="sql/sql_injection.php">SQL Injection</a></li>
         <li><a href="comments/comments.php">Stored XSS</a></li>
         <li><a href="upload/upload.php">File Upload</a></li>
         <li><a href="csrf/change_email.php">CSRF Mail Vulnerable</a></li>
         <li><a href="csrf/change_password.php">CSRF Password Vulnerable</a></li>
-    </ul>
+        <li><a href="security_level.php">Change Security Level</a></li>
 
+    </ul>
 <?php else: ?>
     <p><a href="login.php">Login</a></p>
 <?php endif; ?>
