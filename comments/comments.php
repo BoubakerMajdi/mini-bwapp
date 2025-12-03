@@ -1,66 +1,53 @@
 <?php
 session_start();
-$security_level = $_SESSION["security_level"];
-include "../includes/db.php";
 
+// Load security functions (contains get_security_level() and sanitize_input())
+require_once '../includes/security_functions.php';
 
-
-// Fetch all comments
-$sql = "SELECT * FROM comments ORDER BY id DESC";
-$result = mysqli_query($conn, $sql);
+// Load your real DB connection (mysqli)
+require_once '../includes/db.php';   // ← this is your file
 ?>
-
+    
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Stored XSS - Mini bWAPP</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comments - Mini bWAPP</title>
     <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
+    <?php include '../includes/header.php'; ?>
 
-<h2>Stored XSS</h2>
+    <div class="container">
+        <h1>Comments Section</h1>
+        <p>Current Security Level: <strong><?php echo ucfirst(get_security_level()); ?></strong></p>
+        <p><a href="add_comment.php">Add a New Comment</a></p>
 
-<?php if (!isset($_SESSION['username'])): ?>
-    <p>You must <a href="../login.php">login</a> first.</p>
-<?php else: ?>
+        <?php
+        // Correct query using your real column name: date_added
+        $sql = "SELECT * FROM comments ORDER BY date_added DESC";
+        $result = mysqli_query($conn, $sql);
 
-<!-- Comment form -->
-<form action="add_comment.php" method="POST">
-    <label>Add a comment:</label><br>
-    <textarea name="comment" required></textarea><br><br>
-    <button type="submit">Submit Comment</button>
-</form>
+        if (mysqli_num_rows($result) == 0) {
+            echo "<p>No comments yet. Be the first!</p>";
+        } else {
+            while ($row = mysqli_fetch_assoc($result)) {
+                echo '<div class="comment-box">';
+                echo '<strong>' . htmlspecialchars($row['name'], ENT_QUOTES, 'UTF-8') . '</strong> ';
+                echo '<small>(' . $row['date_added'] . ')</small>';
+                echo '<p>';
 
-<br><hr><br>
+                // THIS IS THE LINE THAT MAKES XSS WORK ON LOW
+                echo $row['comment'];   // ← raw output (already sanitized on insert by sanitize_input())
 
-<h3>Comments:</h3>
+                echo '</p>';
+                echo '</div>';
+            }
+        }
+        ?>
+    </div>
 
-<?php
-while($row = mysqli_fetch_assoc($result)) {
-
-    $comment = $row["comment"];
-
-    switch ($security_level) {
-
-        case "0":   // Low
-            // Direct echo → vulnerable to XSS
-            echo $comment;
-            break;
-
-        case "1":   // Medium
-            // mild protection
-            echo htmlspecialchars($comment, ENT_QUOTES, 'UTF-8');
-            break;
-
-        case "2":   // High
-            // full protection
-            echo nl2br(htmlspecialchars($comment, ENT_QUOTES, 'UTF-8'));
-            break;
-    }
-}
-?>
-
-<?php endif; ?>
-
+    <?php include '../includes/footer.php'; ?>
 </body>
 </html>
