@@ -7,7 +7,7 @@ require_once '../includes/security_functions.php';
 // Load your real DB connection (mysqli)
 require_once '../includes/db.php';   // ← this is your file
 ?>
-    
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -20,9 +20,11 @@ require_once '../includes/db.php';   // ← this is your file
     <?php include '../includes/header.php'; ?>
 
     <div class="container">
-        <h1>Comments Section</h1>
-        <p>Current Security Level: <strong><?php echo ucfirst(get_security_level()); ?></strong></p>
-        <p><a href="add_comment.php">Add a New Comment</a></p>
+        <form action="add_comment.php" method="POST">
+            <label>Add a comment:</label><br>
+            <textarea name="comment" required></textarea><br><br>
+            <button type="submit">Submit Comment</button>
+        </form>
 
         <?php
         // Correct query using your real column name: date_added
