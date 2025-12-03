@@ -1,5 +1,13 @@
 <?php
 session_start();
+if (isset($_POST['security'])) {
+    $_SESSION['security'] = $_POST['security'];
+}
+
+// Set default security level
+if (!isset($_SESSION['security'])) {
+    $_SESSION['security'] = 0; // LOW
+}
 ?>
 
 <!DOCTYPE html>

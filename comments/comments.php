@@ -1,6 +1,9 @@
 <?php
 session_start();
+$security_level = $_SESSION["security_level"];
 include "../includes/db.php";
+
+
 
 // Fetch all comments
 $sql = "SELECT * FROM comments ORDER BY id DESC";
@@ -33,26 +36,25 @@ $result = mysqli_query($conn, $sql);
 <h3>Comments:</h3>
 
 <?php
-$security = $_SESSION['security'];
+while($row = mysqli_fetch_assoc($result)) {
 
-while ($row = mysqli_fetch_assoc($result)) {
+    $comment = $row["comment"];
 
-    $comment = $row['comment'];
+    switch ($security_level) {
 
-    switch ($security) {
-
-        case 0: // LOW: raw output
-            echo "<p><b>{$row['username']}:</b> $comment</p>";
+        case "0":   // Low
+            // Direct echo → vulnerable to XSS
+            echo $comment;
             break;
 
-        case 1: // MEDIUM: strip script on display too
-            $safe_comment = preg_replace('/<script\b[^>]*>(.*?)<\/script>/is', '', $comment);
-            echo "<p><b>{$row['username']}:</b> $safe_comment</p>";
+        case "1":   // Medium
+            // mild protection
+            echo htmlspecialchars($comment, ENT_QUOTES, 'UTF-8');
             break;
 
-        case 2: // HIGH: full escaping
-            $safe_comment = htmlspecialchars($comment, ENT_QUOTES, 'UTF-8');
-            echo "<p><b>{$row['username']}:</b> $safe_comment</p>";
+        case "2":   // High
+            // full protection
+            echo nl2br(htmlspecialchars($comment, ENT_QUOTES, 'UTF-8'));
             break;
     }
 }

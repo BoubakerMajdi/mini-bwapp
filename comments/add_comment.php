@@ -7,28 +7,35 @@ if (!isset($_SESSION['username'])) {
     exit;
 }
 
-$comment = $_POST['comment'];
-$security = $_SESSION['security'];
+$security_level = $_SESSION["security_level"];
 
-// Apply security level
-switch ($security) {
+// Get user input
+$comment = mysqli_real_escape_string($conn, $_POST['comment']);
 
-    case 0: // LOW (vulnerable)
-        // DO NOTHING
+
+// Apply security level logic
+switch ($security_level) {
+    case "0":  // Low
+        // NO PROTECTION
+        $comment = $comment;
         break;
 
-    case 1: // MEDIUM (remove <script> only)
-        $comment = preg_replace('/<script\b[^>]*>(.*?)<\/script>/is', '', $comment);
+    case "1":  // Medium
+        // Basic sanitization
+        $comment = htmlspecialchars($comment, ENT_QUOTES, 'UTF-8');
         break;
 
-    case 2: // HIGH (strong escaping)
+    case "2":  // High
+        // Strong sanitization
+        $comment = strip_tags($comment);
         $comment = htmlspecialchars($comment, ENT_QUOTES, 'UTF-8');
         break;
 }
 
+
 $username = $_SESSION['username'];
 
-$query = "INSERT INTO comments (username, comment, created_at)
+$query = "INSERT INTO comments (username, comment, date_added)
           VALUES ('$username', '$comment', NOW())";
 
 mysqli_query($conn, $query);

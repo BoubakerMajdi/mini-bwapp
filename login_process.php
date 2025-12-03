@@ -15,7 +15,7 @@ if (mysqli_num_rows($result) > 0) {
     header("Location: index.php");
 } else {
     echo "<h3>Login failed!</h3>";
-    echo "<p>Try using SQL Injection 😉</p>";
+    echo "<p>Try using SQL Injection </p>";
     echo "<a href='login.php'>Back to Login</a>";
 }
 ?>
