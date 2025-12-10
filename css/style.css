@@ -1,0 +1,154 @@
+/* ===== Global Reset ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background: #0f172a; /* dark navy */
+    color: #e2e8f0; 
+    line-height: 1.6;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px 20px;
+}
+
+/* ===== Container Cards ===== */
+.container, .card {
+    background: #1e293b;
+    padding: 25px;
+    border-radius: 12px;
+    width: 450px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+    margin-bottom: 20px;
+    border: 1px solid #334155;
+}
+
+/* ===== Titles ===== */
+h1, h2, h3 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-weight: 600;
+    color: #38bdf8;
+}
+
+/* ===== Inputs & Forms ===== */
+input[type="text"],
+input[type="password"],
+textarea,
+select {
+    width: 100%;
+    background: #0f172a;
+    color: #e2e8f0;
+    border: 1px solid #334155;
+    padding: 12px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    transition: 0.3s;
+}
+
+input:focus, textarea:focus, select:focus {
+    outline: none;
+    border-color: #38bdf8;
+    box-shadow: 0 0 6px #38bdf8;
+}
+
+/* ===== Buttons ===== */
+button,
+input[type="submit"] {
+    background: #38bdf8;
+    color: #0f172a;
+    border: none;
+    padding: 12px;
+    width: 100%;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+button:hover,
+input[type="submit"]:hover {
+    background: #0ea5e9;
+}
+
+/* ===== Tables ===== */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+}
+
+th, td {
+    border: 1px solid #334155;
+    padding: 12px;
+    text-align: left;
+}
+
+th {
+    background: #0f172a;
+    color: #38bdf8;
+    font-weight: bold;
+}
+
+tr:nth-child(even) {
+    background-color: #1e293b;
+}
+
+tr:nth-child(odd) {
+    background-color: #0f172a;
+}
+
+/* ===== Comment Box ===== */
+.comment-box {
+    background: #1e293b;
+    padding: 15px;
+    border-radius: 8px;
+    border: 1px solid #334155;
+    margin-bottom: 15px;
+}
+
+/* ===== Links ===== */
+a {
+    color: #38bdf8;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* ===== Messages ===== */
+.success {
+    color: #10b981; /* green */
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.error {
+    color: #ef4444; /* red */
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+/* ===== Navbar (if you have one) ===== */
+.navbar {
+    background: #1e293b;
+    padding: 15px 20px;
+    width: 100%;
+    max-width: 900px;
+    border-radius: 10px;
+    border: 1px solid #334155;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 30px;
+}
+
+.navbar a {
+    color: #38bdf8;
+    font-weight: 500;
+    margin-left: 15px;
+}

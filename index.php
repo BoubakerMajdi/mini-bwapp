@@ -14,7 +14,7 @@ if (!isset($_SESSION['security'])) {
 <html>
 <head>
     <title>Mini bWAPP</title>
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="./css/style.css">
 </head>
 <body>
 

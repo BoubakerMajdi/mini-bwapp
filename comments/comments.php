@@ -36,7 +36,7 @@ require_once '../includes/db.php';   // ← this is your file
         } else {
             while ($row = mysqli_fetch_assoc($result)) {
                 echo '<div class="comment-box">';
-                echo '<strong>' . htmlspecialchars($row['name'], ENT_QUOTES, 'UTF-8') . '</strong> ';
+                echo '<strong>' . htmlspecialchars($row['username'], ENT_QUOTES, 'UTF-8') . '</strong> ';
                 echo '<small>(' . $row['date_added'] . ')</small>';
                 echo '<p>';
 
