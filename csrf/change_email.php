@@ -12,6 +12,8 @@ if (!isset($_SESSION['username'])) {
 <html>
 <head>
     <title>Change Email (CSRF Vulnerable)</title>
+    <link rel="stylesheet" href="../css/style.css">
+
 </head>
 <body>
 
