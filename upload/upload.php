@@ -22,7 +22,7 @@ session_start();
     <button type="submit">Upload</button>
 </form>
 
-<br><a href="../index.php">Back to Home</a>
+<button class="green" onclick="window.location.href='../index.php'">Back to Home</button>
 
 <?php endif; ?>
 

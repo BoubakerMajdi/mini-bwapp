@@ -18,7 +18,7 @@ require_once "../includes/db.php";
     <input type="text" name="id">
     <button type="submit">Search</button>
 </form>
-
+<button class="green" onclick="window.location.href='../index.php'">Back to Home</button>
 <hr>
 
 <?php

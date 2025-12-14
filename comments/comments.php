@@ -25,6 +25,7 @@ require_once '../includes/db.php';   // ← this is your file
             <textarea name="comment" required></textarea><br><br>
             <button type="submit">Submit Comment</button>
         </form>
+        <button class="green" onclick="window.location.href='../index.php'">Back to Home</button>
 
         <?php
         // Correct query using your real column name: date_added

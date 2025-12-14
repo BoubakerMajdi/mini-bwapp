@@ -32,6 +32,7 @@ if (isset($_GET['success'])) {
     <br><br>
     <button type="submit">Change Email</button>
 </form>
+<button class="green" onclick="window.location.href='../index.php'">Back to Home</button>
 
 </body>
 </html>
