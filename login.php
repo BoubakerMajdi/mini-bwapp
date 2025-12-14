@@ -10,35 +10,44 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $result = mysqli_query($conn, $query);
 
     if (mysqli_num_rows($result) == 1) {
-        $_SESSION['username'] = $username; // IMPORTANT
+        $_SESSION['username'] = $username;
         header("Location: index.php");
         exit;
     } else {
-        echo "Invalid login!";
+        $error = "Invalid username or password!";
     }
 }
 ?>
 
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login - Mini bWAPP</title>
     <link rel="stylesheet" href="./css/style.css">
-
 </head>
 <body>
 
-<h2>Login</h2>
+<div class="login-container">
+    <h2>ACCESS TERMINAL</h2>
 
-<form action="login_process.php" method="POST">
-    <label>Username:</label><br>
-    <input type="text" name="username" required><br><br>
+    <?php if (isset($error)): ?>
+        <p class="error-msg"><?php echo $error; ?></p>
+    <?php endif; ?>
 
-    <label>Password:</label><br>
-    <input type="password" name="password" required><br><br>
+    <form action="" method="POST">
+        <label>Username</label>
+        <input type="text" name="username" required autofocus>
 
-    <button type="submit">Login</button>
-</form>
+        <label>Password</label>
+        <input type="password" name="password" required>
+
+        <button type="submit">LOGIN</button>
+    </form>
+
+    <a href="index.php" class="back-link">[ BACK TO MAINFRAME ]</a>
+</div>
 
 </body>
 </html>

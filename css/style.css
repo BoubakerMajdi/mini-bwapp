@@ -35,6 +35,78 @@ body::after {
   opacity: 0.6;
 }
 
+ /* Centered login card */
+        .login-container {
+            max-width: 420px;
+            width: 90%;
+            margin: 80px auto;
+            padding: 40px;
+            background: rgba(0, 30, 0, 0.5);
+            border: 2px solid #0f0;
+            border-radius: 16px;
+            box-shadow: 
+                0 0 30px rgba(0, 255, 0, 0.5),
+                inset 0 0 20px rgba(0, 255, 0, 0.1);
+            text-align: center;
+        }
+
+        .login-container h2 {
+            font-size: 2.8rem;
+            margin-bottom: 30px;
+            color: #0f0;
+            text-shadow: 0 0 15px #0f0;
+        }
+
+        .login-container label {
+            display: block;
+            text-align: left;
+            margin: 20px 0 8px;
+            font-size: 1.4rem;
+            color: #0f0;
+        }
+
+        .login-container input[type="text"],
+        .login-container input[type="password"] {
+            width: 100%;
+            padding: 14px 18px;
+            background: rgba(0, 0, 0, 0.7);
+            border: 1px solid #0f0;
+            color: #0f0;
+            font-family: 'VT323', monospace;
+            font-size: 1.5rem;
+            border-radius: 8px;
+            box-shadow: inset 0 0 15px rgba(0, 255, 0, 0.2);
+            transition: all 0.3s;
+        }
+
+        .login-container input:focus {
+            outline: none;
+            border-color: #0f0;
+            box-shadow: 0 0 25px #0f0, inset 0 0 20px rgba(0, 255, 0, 0.3);
+        }
+
+        .login-container button {
+            margin-top: 30px;
+            width: 100%;
+            padding: 16px;
+            font-size: 1.6rem;
+        }
+
+        .error-msg {
+            color: #f00;
+            font-size: 1.4rem;
+            margin: 20px 0;
+            text-shadow: 0 0 10px #f00;
+        }
+
+        .back-link {
+            display: block;
+            margin-top: 30px;
+            color: #0ff;
+            font-size: 1.4rem;
+            text-decoration: underline;
+        }
+
 /* Main title – pure hacker glow */
 h1 {
   text-align: center;

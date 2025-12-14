@@ -3,18 +3,13 @@ require_once "../includes/session.php";
 require_once "../includes/db.php";
 require_once "../includes/auth_admin.php";
 
-$security = $_SESSION['security'] ?? 'low';
+// Force admin role check on ALL security levels
+if (!isset($_SESSION['username']) || $_SESSION['role'] !== 'admin') {
+    die("<h2 style='color:#f00;text-align:center;'>ACCESS DENIED<br>Admin privileges required</h2>
+         <a href='../index.php'><button>Back to Home</button></a>");
+}
 
-// LOW security → NO access control
-if ($security == 'low') {
-    // no role check
-}
-// MEDIUM/HIGH security → must be admin
-else {
-    if ($_SESSION['role'] !== 'admin') {
-        die("Access denied: admin only!");
-    }
-}
+$security = $_SESSION['security'] ?? 'low';
 ?>
 
 <!DOCTYPE html>
@@ -24,13 +19,24 @@ else {
     <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
-<h2>Admin Panel</h2>
 
-<p>Welcome, <?php echo $_SESSION['username']; ?>!</p>
+<div class="container">
+    <h2>ADMIN PANEL</h2>
+    <p>Welcome, <strong><?php echo htmlspecialchars($_SESSION['username']); ?></strong> (Administrator)</p>
 
-<a href="delete_user.php?user=testuser">Delete user testuser</a> (example)
-<br><br>
+    <div class="vuln-list">
+        <div class="vuln-item">
+            <a href="delete_user.php?user=testuser">Delete user 'testuser'</a>
+        </div>
+        <div class="vuln-item">
+            <a href="manage_comments.php">Manage Comments</a>
+        </div>
+        <!-- Add more admin actions here -->
+    </div>
 
-<a href="../index.php"><button>Back</button></a>
+    <br>
+    <button class="green" onclick="window.location.href='../index.php'">Back to Home</button>
+</div>
+
 </body>
 </html>

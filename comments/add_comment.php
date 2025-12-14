@@ -15,17 +15,17 @@ $comment = mysqli_real_escape_string($conn, $_POST['comment']);
 
 // Apply security level logic
 switch ($security_level) {
-    case "0":  // Low
+    case "low":  // Low
         // NO PROTECTION
         $comment = $comment;
         break;
 
-    case "1":  // Medium
+    case "medium":  // Medium
         // Basic sanitization
         $comment = htmlspecialchars($comment, ENT_QUOTES, 'UTF-8');
         break;
 
-    case "2":  // High
+    case "high":  // High
         // Strong sanitization
         $comment = strip_tags($comment);
         $comment = htmlspecialchars($comment, ENT_QUOTES, 'UTF-8');
