@@ -18,7 +18,6 @@ Inspired by bWAPP, this is a simple PHP/MySQL training app to practice web secur
 4. Visit `http://localhost/mini-bwapp`
 5. Change security level at the top!
 
-## Screenshots
-(You can add images here later)
+
 
 Made with ❤️ for learning web security.
